@@ -110,7 +110,7 @@ hr {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- CHAT SESSION MEMORY ----------------
+# ---------------- SESSION CHAT MEMORY ----------------
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -142,7 +142,7 @@ with st.sidebar:
     st.caption("PERSONAL AI ASSISTANT")
     st.caption("Powered by Groq Cloud")
     st.caption("Model: Llama 3.3 70B")
-    st.caption("Version 2.0")
+    st.caption("Version 2.1")
 
 # ---------------- MAIN HEADER ----------------
 
@@ -245,11 +245,17 @@ Your responsibilities:
                     "Please check Streamlit Cloud Secrets."
                 )
 
-            except requests.exceptions.HTTPError as error:
+            except requests.exceptions.HTTPError:
+                try:
+                    error_details = response.json().get(
+                        "error", {}
+                    ).get("message", response.text)
+                except ValueError:
+                    error_details = response.text
+
                 answer = (
-                    "Groq API request failed. "
-                    "Please check your API key, model availability "
-                    "and usage limits."
+                    f"Groq Error {response.status_code}: "
+                    f"{error_details[:500]}"
                 )
 
             except requests.exceptions.RequestException:
