@@ -141,8 +141,8 @@ with st.sidebar:
 
     st.caption("PERSONAL AI ASSISTANT")
     st.caption("Powered by Groq Cloud")
-   st.caption("Model: GPT-OSS 120B")
-st.caption("Version 2.2")
+    st.caption("Model: GPT-OSS 120B")
+    st.caption("Version 2.2")
 
 # ---------------- MAIN HEADER ----------------
 
@@ -193,7 +193,6 @@ if question:
         with st.spinner("SANIQRA is thinking..."):
 
             try:
-
                 api_key = st.secrets["GROQ_API_KEY"]
 
                 system_message = {
@@ -267,7 +266,7 @@ Your responsibilities:
             except (ValueError, TypeError, IndexError):
                 answer = "Sorry, response read karne mein problem hui."
 
-           st.markdown(answer)
+        st.markdown(answer)
 
     st.session_state.messages.append({
         "role": "assistant",
