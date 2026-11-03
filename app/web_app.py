@@ -9,7 +9,7 @@ APP_DIR = Path(__file__).parent
 LOGO_FILE = APP_DIR / "saniqra_logo.png"
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL = "openai/gpt-oss-120b"
 
 st.set_page_config(
     page_title="SANIQRA AI",
@@ -141,8 +141,8 @@ with st.sidebar:
 
     st.caption("PERSONAL AI ASSISTANT")
     st.caption("Powered by Groq Cloud")
-    st.caption("Model: Llama 3.3 70B")
-    st.caption("Version 2.1")
+   st.caption("Model: GPT-OSS 120B")
+st.caption("Version 2.2")
 
 # ---------------- MAIN HEADER ----------------
 
@@ -205,7 +205,7 @@ Your identity:
 - Your name is SANIQRA AI.
 - Your creator is Sanika Hajare.
 - You are powered by Groq Cloud AI.
-- Your underlying model is Llama 3.3 70B.
+- Your underlying model is OpenAI GPT-OSS 120B, served by Groq.
 - Never claim that your assistant name is Llama.
 
 Your responsibilities:
@@ -267,7 +267,7 @@ Your responsibilities:
             except (ValueError, TypeError, IndexError):
                 answer = "Sorry, response read karne mein problem hui."
 
-            st.markdown(answer)
+           st.markdown(answer)
 
     st.session_state.messages.append({
         "role": "assistant",
